@@ -1,15 +1,30 @@
 // Local vars
+var port = 8080;
 var timeout = 5000;
 var pollFreq = 5000;
 var noneFound;
+
+// Set up server
+var router = require('tiny-router');
+router.get('/', function (req, res) {
+  console.log('Sending')
+  res.send('Hi I am a Tessel');
+  console.log('Sent')
+  // res.end();
+});
+
+// Start server
+router.listen(port);
+console.log('Listening on port', port);
 
 // Set up hardware
 var tessel = require('tessel');
 var blelib = require('ble-ble113a');
 var ble = blelib.use(tessel.port['A']);
 
-// Initial scan for devices
+
 ble.on('ready', function () {
+  // Initial scan for devices
   scan();
 });
 
