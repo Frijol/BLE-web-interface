@@ -3,14 +3,16 @@ var port = 8080;
 var timeout = 5000;
 var pollFreq = 5000;
 var noneFound;
+var devices = [];
 
 // Set up server
 var router = require('tiny-router');
 router.get('/', function (req, res) {
-  console.log('Sending')
-  res.send('Hi I am a Tessel');
-  console.log('Sent')
-  // res.end();
+  if (devices.length > 0) {
+    res.send(devices);
+  } else {
+    res.send('No devices in range.');
+  }
 });
 
 // Start server
@@ -32,6 +34,7 @@ ble.on('ready', function () {
 ble.on('discover', function(peripheral) {
   deviceID = peripheral.address._str;
   console.log('Found device:', deviceID);
+  devices.push({id: deviceID});
 });
 
 // Scan for devices regularly
@@ -41,6 +44,8 @@ function poll() {
 
 // Check and see if authed devices in range
 function scan () {
+  // Reset found devices
+  devices = [];
   console.log('Scanning...');
   ble.startScanning();
   noneFound = setTimeout(function () {
