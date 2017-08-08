@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/Frijol/BLE-web-interface",
   "dependencies": {
-    "ble-ble113a": "^0.1.12",
+    "ble-ble113a": "^0.2.0",
     "tiny-router": "^0.1.3"
   }
 }
