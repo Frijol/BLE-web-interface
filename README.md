@@ -1,6 +1,8 @@
 BLE-web-interface
 =================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Frijol/BLE-web-interface.svg)](https://greenkeeper.io/)
+
 Displays nearby BLE devices on a webpage served by a Tessel.
 
 You have the option to pre-register devices into the code if you want them to show up with a name next to them.
